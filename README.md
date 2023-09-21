@@ -1,99 +1,278 @@
-# Musa Capital - Community Tools V1
-Open Source Tools for Emerging Fund Manager &amp; Angel Syndicates
-# Cap Table Data Model
+# Musa Capital - Community Built Venture Captal Tools V1
+Open Source Tools for Emerging Funds, Solo GP's, and Angel Syndicates
+
+# Open Cap Table Project Development Plan
 
 ## Introduction
 
-This document describes the data model for the cap table application, outlining various objects and their relationships to provide a clear structure for development and integration.
+This document outlines the development plan for implementing the Open Cap Table standards project, featuring objectives, tasks, and deliverables.
 
-## Data Model (Objects)
+### Equity Calculator Development
 
-### 1. Stock Legend Template
+**Objective**: Provide a tool for accurate equity distribution calculations.
 
-**Description**: Represents stock legend descriptions and text.
+**Tasks**:
+- Define the logic required to transform equity percentages into exact share counts.
+- Collaborate with front-end developers to create a user-friendly interface.
+- Integrate this feature with the Firebase backend, ensuring data storage adheres to the open cap table standard.
 
-**Fields**:
+### Employee Views Implementation
 
-- Stock legend ID
-- Text
-- Type
-- Use Cases
+**Objective**: Create a transparent platform for employees.
 
-### 2. Stock Plan
+**Tasks**:
+- Design a dashboard where employees can view their equity grants and understand their holdings.
+- Ensure data shown here is fetched from Firestore and adheres to the open cap table standard.
+- Implement security features in Firebase to restrict data access based on user roles.
 
-**Description**: Contains details about stock plans including their type and duration.
+### Roles and Permissions
 
-**Fields**:
+**Objective**: Implement a structured access system.
 
-- Stock plan ID
-- Name
-- Type (e.g., ISO, NSO, RSA)
-- Duration
-- Other relevant attributes
+**Tasks**:
+- Define different user roles, such as Admin, Employee, and Investor.
+- Configure Firebase Authentication and Security Rules to manage access levels for different roles.
+- Test role-based access in real-world scenarios.
 
-### 3. Valuation
+### Integration Testing & Community Feedback
 
-**Description**: Information about a specific valuation event or scenario.
+**Objective**: Test data compatibility and portability.
 
-**Fields**:
+**Tasks**:
+- Develop test scenarios and cases focusing on data compatibility and portability.
+- Engage the community for testing, emphasizing the need for feedback.
+- Implement a feedback loop for community-reported issues.
 
-- Valuation ID
-- Date
-- Amount
-- Valuation type (e.g., 409A, internal)
-- Notes
+### Signed Option Grants Module
 
-### 4. Vesting Terms
+**Objective**: Facilitate the signing of option grants.
 
-**Description**: Describes terms for the vesting of a security.
+**Tasks**:
+- Draft the module logic, ensuring compliance with regulations.
+- Design an interface for drafting, reviewing, and signing option grants.
+- Integrate Firebase functionalities for storing signed documents.
+- Incorporate role-based permissions to protect sensitive documents.
 
-**Fields**:
+### Post-Termination Exercise Implementation
 
-- Vesting term ID
-- Start date
-- Duration
-- Cliff period
-- Frequency
+**Objective**: Handle post-termination equity exercises.
 
-### 5. Cap Table
+**Tasks**:
+- Develop logic for handling post-termination equity exercises.
+- Implement an interface for employees to view post-termination options and carry out exercises.
+- Connect this feature with Firebase, ensuring data structure alignment.
 
-**Description**: A holistic view of the cap table structure.
+### Customizable Forms Component
 
-**Fields**:
+**Objective**: Provide a flexible form customization system.
 
-- Cap table ID
-- Name
-- Issuer
-- Securities
-- Valuations
-- Stakeholders
+**Tasks**:
+- Identify common forms in equity management.
+- Design a system for startups to customize and deploy these forms.
+- Integrate with Firebase for storing and retrieving these customized forms.
 
-### 6. Stakeholder
+### Support for Complex Vesting Schedules
 
-**Description**: Contains details about individual or institutional stakeholders.
+**Objective**: Offer diverse vesting schedules.
 
-**Fields**:
+**Tasks**:
+- Implement varied vesting schedules: time-based, back-weighted, and milestone-based.
+- Design user interfaces for custom vesting rule definition.
+- Ensure data structure and logic alignment.
 
-- Stakeholder ID
-- Name
-- Type (e.g., individual, institution)
-- Current relationship
-- Contact details
-- Tax IDs
+### Integration with External Systems
 
-### 7. Issuer
+**Objective**: Seamlessly integrate with popular systems.
 
-**Description**: Information about the company whose cap table is described.
+**Tasks**:
+- Research potential integration systems (like HRIS or payroll systems).
+- Develop APIs or SDKs for seamless integration.
+- Test integrations for data accuracy.
 
-**Fields**:
+### Enhanced User Experience
 
-- Issuer ID
-- Legal name
-- DBA (Doing Business As)
-- Formation date
-- Country of formation
-- Country subdivision of formation
-- Tax IDs
-- Contact details (Email, Phone, Address)
-- Initial shares authorized
+**Objective**: Refine the user experience.
+
+**Tasks**:
+- Collect feedback on user experience.
+- Make design and functionality adjustments based on feedback.
+- Implement user onboarding tutorials or walkthroughs.
+
+### Audit-Ready Reports Generation
+
+**Objective**: Offer audit-compliant report generation.
+
+**Tasks**:
+- Develop a robust report generation module.
+- Ensure these reports comply with audit standards.
+- Allow users to customize report details.
+
+### Security Hardening
+
+**Objective**: Strengthen platform security.
+
+**Tasks**:
+- Conduct vulnerability assessments and penetration tests.
+- Enhance Firebase security rules.
+- Implement multi-factor authentication.
+
+### Backup & Data Recovery
+
+**Objective**: Ensure data integrity.
+
+**Tasks**:
+- Design and implement a data backup strategy.
+- Allow users to initiate backups and restorations.
+
+---
+
+# Data Model
+
+## Objects:
+
+### 1. Admin (System Owner)
+- **Attributes:** 
+  - UserID
+  - Name
+  - Email
+  - UserRoles
+  - NotificationSettings
+- **Relationships:** 
+  - Oversees All Objects
+
+### 2. Company
+- **Attributes:** 
+  - CompanyID
+  - Name
+  - Address
+  - FinancialReports
+  - CompanyDocuments
+- **Relationships:** 
+  - Sends Invites to: Investors, Employees
+  - Communicates with: Investors
+
+### 3. Investor
+- **Attributes:** 
+  - InvestorID
+  - Name
+  - Email
+  - InvestmentOverview
+  - DocumentRepository
+  - InvestmentTracker
+- **Relationships:**
+  - Invited by: Company
+  - Communicates with: Company
+
+### 4. Employee
+- **Attributes:** 
+  - EmployeeID
+  - Name
+  - Email
+  - EquityOverview
+  - DocumentAccess
+  - VestingSchedule
+  - TaxCalculator
+- **Relationships:** 
+  - Invited by: Company
+
+### 5. Notification System
+- **Attributes:** 
+  - NotificationID
+  - UserID (receiver)
+  - MessageType
+  - Content
+  - Timestamp
+- **Relationships:** 
+  - Notifies: All User Types
+
+### 6. Activity Log
+- **Attributes:** 
+  - LogID
+  - UserID
+  - ActivityType
+  - Timestamp
+  - Details
+- **Relationships:** 
+  - Tracks activity of: All User Types
+
+### 7. Integration Module
+- **Attributes:** 
+  - IntegrationID
+  - ToolName
+  - Description
+  - Link/Path
+- **Relationships:** 
+  - Integrates with: Company's Financial Tools, Employee's Equity Tracker, Investor's Portfolio Manager
+
+### 8. Invite Management (For Companies)
+- **Attributes:** 
+  - InviteID
+  - ReceiverID
+  - Status (Pending/Accepted/Declined)
+  - Timestamp
+- **Relationships:** 
+  - Invites: Investors, Employees
+
+### 9. Communication Channel (For Companies & Investors)
+- **Attributes:** 
+  - MessageID
+  - SenderID
+  - ReceiverID
+  - Content
+  - Timestamp
+- **Relationships:** 
+  - Message between: Company and Investor
+
+### 10. Equity Simulator (For Employees)
+- **Attributes:** 
+  - SimulationID
+  - ScenarioDetails
+  - PredictedOutcome
+- **Relationships:** 
+  - Used by: Employees
+
+### 11. Tax Implications Calculator (For Employees)
+- **Attributes:** 
+  - CalculationID
+  - SaleScenario
+  - TaxImplication
+- **Relationships:** 
+  - Used by: Employees
+
+### 12. Document Repository (For Investors)
+- **Attributes:** 
+  - DocID
+  - DocumentType
+  - Timestamp
+- **Relationships:** 
+  - Accessible to: Investors
+
+### 13. Document Access (For Employees)
+- **Attributes:** 
+  - DocID
+  - DocumentType
+  - Timestamp
+- **Relationships:** 
+  - Accessible to: Employees
+
+### 14. Investment Tracker (For Investors)
+- **Attributes:** 
+  - TrackID
+  - Company
+  - EquityPercentage
+  - CurrentValue
+- **Relationships:** 
+  - Used by: Investors
+
+### 15. Financial Reporting Tool (For Companies)
+- **Attributes:** 
+  - ReportID
+  - Type (Annual/Quarterly)
+  - Data
+  - Timestamp
+- **Relationships:** 
+  - Generated by: Companies
+  - Accessible to: Investors
+
+
 
