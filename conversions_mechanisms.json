@@ -1,0 +1,121 @@
+{
+  "CustomConversionMechanism": {
+    "type": "object",
+    "properties": {
+      "type": {
+        "type": "string",
+        "enum": ["CUSTOM_CONVERSION"]
+      },
+      "custom_conversion_description": {
+        "type": "string"
+      }
+    },
+    "required": ["type", "custom_conversion_description"]
+  },
+  "FixedAmountConversionMechanism": {
+    "type": "object",
+    "properties": {
+      "type": {
+        "type": "string",
+        "enum": ["FIXED_AMOUNT_CONVERSION"]
+      },
+      "converts_to_quantity": {
+        "type": "number"
+      }
+    },
+    "required": ["type", "converts_to_quantity"]
+  },
+  "NoteConversionMechanism": {
+    "type": "object",
+    "properties": {
+      "type": {
+        "type": "string",
+        "enum": ["CONVERTIBLE_NOTE_CONVERSION"]
+      },
+      "interest_rates": {
+        "type": "array",
+        "items": {
+          "$ref": "#/definitions/InterestRate"
+        }
+      },
+      "day_count_convention": {
+        "$ref": "#/definitions/DayCountType"
+      },
+      "interest_payout": {
+        "$ref": "#/definitions/InterestPayoutType"
+      },
+      "interest_accrual_period": {
+        "$ref": "#/definitions/AccrualPeriodType"
+      },
+      "compounding_type": {
+        "$ref": "#/definitions/CompoundingType"
+      },
+      "conversion_discount": {
+        "$ref": "#/definitions/Percentage"
+      },
+      "conversion_valuation_cap": {
+        "$ref": "#/definitions/Monetary"
+      },
+      "capitalization_definition": {
+        "type": "string"
+      },
+      "capitalization_definition_rules": {
+        "$ref": "#/definitions/CapitalizationDefinitionRules"
+      },
+      "exit_multiple": {
+        "$ref": "#/definitions/Ratio"
+      },
+      "conversion_mfn": {
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "type",
+      "interest_rates",
+      "day_count_convention",
+      "interest_payout",
+      "interest_accrual_period",
+      "compounding_type"
+    ],
+    "definitions": {
+      "InterestRate": {
+        // Define the InterestRate schema
+        // ...
+      },
+      "DayCountType": {
+        // Define the DayCountType schema
+        // ...
+      },
+      "InterestPayoutType": {
+        // Define the InterestPayoutType schema
+        // ...
+      },
+      "AccrualPeriodType": {
+        // Define the AccrualPeriodType schema
+        // ...
+      },
+      "CompoundingType": {
+        // Define the CompoundingType schema
+        // ...
+      },
+      "Percentage": {
+        // Define the Percentage schema
+        // ...
+      },
+      "Monetary": {
+        // Define the Monetary schema
+        // ...
+      },
+      "CapitalizationDefinitionRules": {
+        // Define the CapitalizationDefinitionRules schema
+        // ...
+      },
+      "Ratio": {
+        // Define the Ratio schema
+        // ...
+      }
+    }
+  }
+  // Define schemas for other conversion mechanisms if needed
+}
+
