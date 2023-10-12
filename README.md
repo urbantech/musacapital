@@ -266,12 +266,70 @@ Our MongoDB data model is designed to facilitate efficient data management for c
    This API documentation provides detailed information on available endpoints, request parameters, and responses, making it easy to interact with the API.
 
 ---
-
+Here is a suggested file structure for the API
 ```
 
-This updated Markdown code includes a step to access the API documentation after starting the application. Users can now find detailed information on how to interact with the API alongside the installation instructions.
+musacapital/
+  ├── config/
+  │   ├── mongoose.js             # Mongoose configuration
+  │   ├── express.js              # Express configuration
+  │   ├── datastax.js             # DataStax configuration (if applicable)
+  │   ├── firebase.js             # Firebase configuration (if applicable)
+  │   └── ...                     # Other configuration files
+  │
+  ├── controllers/
+  │   ├── adminController.js      # Controller for Admin related routes
+  │   ├── companyController.js    # Controller for Company related routes
+  │   ├── investorController.js   # Controller for Investor related routes
+  │   ├── employeeController.js   # Controller for Employee related routes
+  │   ├── notificationController.js # Controller for Notification related routes
+  │   ├── activityLogController.js # Controller for Activity Log related routes
+  │   ├── integrationController.js # Controller for Integration Module related routes
+  │   ├── inviteController.js     # Controller for Invite Management related routes
+  │   ├── communicationController.js # Controller for Communication Channel related routes
+  │   ├── equitySimulatorController.js # Controller for Equity Simulator related routes
+  │   ├── taxCalculatorController.js  # Controller for Tax Calculator related routes
+  │   ├── documentController.js   # Controller for Document Repository and Access related routes
+  │   ├── investmentTrackerController.js # Controller for Investment Tracker related routes
+  │   └── financialReportingController.js # Controller for Financial Reporting Tool related routes
+  │
+  ├── models/
+  │   ├── admin.js                # Mongoose model for Admin
+  │   ├── company.js              # Mongoose model for Company
+  │   ├── investor.js             # Mongoose model for Investor
+  │   ├── employee.js             # Mongoose model for Employee
+  │   ├── notification.js         # Mongoose model for Notification System
+  │   ├── activityLog.js          # Mongoose model for Activity Log
+  │   ├── integration.js          # Mongoose model for Integration Module
+  │   ├── invite.js               # Mongoose model for Invite Management
+  │   ├── communication.js        # Mongoose model for Communication Channel
+  │   ├── equitySimulator.js      # Mongoose model for Equity Simulator
+  │   ├── taxCalculator.js        # Mongoose model for Tax Calculator
+  │   ├── document.js             # Mongoose model for Document Repository and Access
+  │   ├── investmentTracker.js    # Mongoose model for Investment Tracker
+  │   └── financialReporting.js   # Mongoose model for Financial Reporting Tool
+  │
+  ├── routes/
+  │   ├── adminRoutes.js          # Routes for Admin related endpoints
+  │   ├── companyRoutes.js        # Routes for Company related endpoints
+  │   ├── investorRoutes.js       # Routes for Investor related endpoints
+  │   ├── employeeRoutes.js       # Routes for Employee related endpoints
+  │   ├── notificationRoutes.js   # Routes for Notification related endpoints
+  │   ├── activityLogRoutes.js    # Routes for Activity Log related endpoints
+  │   ├── integrationRoutes.js    # Routes for Integration Module related endpoints
+  │   ├── inviteRoutes.js         # Routes for Invite Management related endpoints
+  │   ├── communicationRoutes.js  # Routes for Communication Channel related endpoints
+  │   ├── equitySimulatorRoutes.js # Routes for Equity Simulator related endpoints
+  │   ├── taxCalculatorRoutes.js  # Routes for Tax Calculator related endpoints
+  │   ├── documentRoutes.js       # Routes for Document Repository and Access related endpoints
+  │   ├── investmentTrackerRoutes.js # Routes for Investment Tracker related endpoints
+  │   └── financialReportingRoutes.js # Routes for Financial Reporting Tool related endpoints
+  │
+  ├── index.js                   # Main application file
+  ├── package.json               # Node.js project dependencies and scripts
+  └── README.md                  # Project documentation
 
----
+```
 
 ## Project Roadmap
 
@@ -296,6 +354,10 @@ Our project follows an agile development approach with sprints. Here's a glimpse
 - [ ] Task 3: Fix a known bug
 - [ ] Task 4: Write unit tests for specific modules
 - [ ] Task 5: Update documentation (e.g., README)
+- [ ] Task 6: Create User Stories 
+- [ ] Task 7: Create FrontEnd Wireframes for Web & Mobile
+- [ ] Task 8: Create React FrontEnd
+- [ ] Task 9: Create React Native FrontEnd
 
 Feel free to pick a task, fork the repository, create a new branch, and submit a pull request. We'll review and merge your contributions as soon as possible.
 
