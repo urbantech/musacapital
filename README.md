@@ -143,11 +143,6 @@ This document outlines the development plan for implementing the Open Cap Table 
 - Allow users to initiate backups and restorations.
 
 ---
-
-## Data Model
-
-# Data Model JSON Representation
-
 # Data Model JSON Representation
 
 ```json
